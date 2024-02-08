@@ -35,16 +35,18 @@ class FilePackageResolver:
     def _run_pacman_f(self, files):
         # make sure that the files are str
         files = [str(file) for file in files]
+        files = [f for f in files if not f.startswith('/home/')]
 
-        command = "{pacman} -Fy {files}"
+        files = list(set(files))
+        command = ['pacman', '-F'] + files
 
         # ensure C locale is used to avoid locales affecting the output format
         env = os.environ.copy()
         env["LC_ALL"] = "C"
 
-        command = command.format(**self._cli_tools, files=" ".join(files))
         self.logger.info(command)
-        _proc = subprocess.run(command, stdout=subprocess.PIPE, shell=True, env=env)
+        _proc = subprocess.run(
+            command, stdout=subprocess.PIPE, shell=False, env=env)
         stdout_data = _proc.stdout.decode()
         return stdout_data
 
