@@ -35,7 +35,7 @@ ruamel.yaml.clib==0.2.8
 schema==0.7.5
 shutils==0.1.0
 six==1.16.0
-urllib3==1.26.9
+urllib3==1.26.18
 virtualenv==20.24.5
 wcwidth==0.2.8
 websocket-client==1.6.4
