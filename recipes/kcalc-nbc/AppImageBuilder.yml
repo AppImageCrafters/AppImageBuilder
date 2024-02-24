@@ -37,9 +37,6 @@ AppDir:
       # exclude glibc for a smaller but non backward compatible bundles
       - opt/libc
 
-  runtime:
-    version: "continuous"
-
   test:
     debian:
       image: appimagecrafters/tests-env:debian-stable
@@ -62,3 +59,4 @@ AppImage:
   update-information: None
   sign-key: None
   arch: x86_64
+  comp: gzip

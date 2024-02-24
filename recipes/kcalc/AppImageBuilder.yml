@@ -41,8 +41,6 @@ AppDir:
       - usr/share/doc/*/NEWS.*
       - usr/share/doc/*/TODO.*
       - usr/share/metainfo/org.kde.kcalc.appdata.xml
-  runtime:
-    version: "continuous"
 
   test:
     debian:
@@ -66,3 +64,4 @@ AppImage:
   update-information: None
   sign-key: None
   arch: x86_64
+  comp: gzip

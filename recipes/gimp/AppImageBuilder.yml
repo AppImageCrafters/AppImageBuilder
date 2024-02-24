@@ -85,7 +85,7 @@ AppDir:
       - usr/share/doc/*/TODO.*
       - usr/include
   runtime:
-    version: continuous
+
     path_mappings:
       - /etc/gimp:$APPDIR/etc/gimp
       - /usr/lib/gimp:$APPDIR/usr/lib/gimp
@@ -117,3 +117,4 @@ AppDir:
 
 AppImage:
   arch: x86_64
+  comp: gzip

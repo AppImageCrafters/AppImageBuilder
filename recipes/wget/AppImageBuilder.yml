@@ -57,3 +57,4 @@ AppImage:
   update-information: None
   sign-key: None
   file_name: !ENV 'wget-${APP_VERSION}-${TARGET_ARCH}.AppImage'
+  comp: gzip

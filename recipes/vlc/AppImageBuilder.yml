@@ -42,3 +42,4 @@ AppImage:
   arch: x86_64
   update-information: None
   sign-key: None
+  comp: gzip

@@ -158,8 +158,7 @@ AppDir:
       - usr/share/doc/*/changelog.*
       - usr/share/doc/*/NEWS.*
       - usr/share/doc/*/TODO.*
-  runtime:
-    version: v2.0.0-alpha
+  runtime: {}
   test:
     fedora-30:
       image: appimagecrafters/tests-env:fedora-30
@@ -179,3 +178,4 @@ AppDir:
 AppImage:
   arch: x86_64
   update-information: guess
+  comp: gzip

@@ -1,3 +1,7 @@
+# To build AppImageBuilder, specify explicit AppDir path other than current directory
+# e.g.
+# cd recipes/appimage-builder
+# APPIMAGE_BUILDER_VERSION=eaadff4 python ../../__main__.py --recipe AppImageBuilder.yml --appdir /tmp/appimage-builder
 version: 1
 script:
   # Remove any previous build
@@ -15,14 +19,14 @@ AppDir:
     # Set the python executable as entry point
     exec: usr/bin/python3
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
-    exec_args: "$APPDIR/usr/bin/appimage-builder $@"
+    exec_args: "$APPDIR/usr/local/bin/appimage-builder $@"
 
   apt:
     arch: amd64
     sources:
-      - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse'
-      - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse'
-        key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
+      - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse'
+      - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse'
+        key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
       - bash
@@ -34,7 +38,7 @@ AppDir:
       - fakeroot
       - libgdk-pixbuf2.0-dev
       - patchelf
-      - python3.8
+      - python3.10
       - squashfs-tools
       - strace
       - zsync
@@ -46,20 +50,20 @@ AppDir:
     ln -s bash $TARGET_APPDIR/bin/sh
 
     # install appimage-builder
-    python3.8 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR"  install ../../
-    python3.8 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR"  install certifi
+    python3.10 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR"  install ../../
+    python3.10 -m pip install --ignore-installed --prefix=/usr --root="$TARGET_APPDIR"  install certifi
 
   runtime:
-    version: "continuous"
+    version: "v2.0.0"
     env:
       # Set python home
       # See https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME
       PYTHONHOME: '${APPDIR}/usr'
       # Path to the site-packages dir or other modules dirs
       # See https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH
-      PYTHONPATH: '${APPDIR}/usr/lib/python3.8/site-packages'
+      PYTHONPATH: '${APPDIR}/usr/lib/python3.10/site-packages'
       # SSL Certificates are placed in a different location for every system therefore we ship our own copy
-      SSL_CERT_FILE: '${APPDIR}/usr/lib/python3.8/site-packages/certifi/cacert.pem'
+      SSL_CERT_FILE: '${APPDIR}/usr/lib/python3.10/site-packages/certifi/cacert.pem'
 
   test:
     fedora:
@@ -83,4 +87,4 @@ AppImage:
   update-information: 'gh-releases-zsync|AppImageCrafters|appimage-builder|latest|-*x86_64.AppImage.zsync'
   sign-key: None
   arch: x86_64
-
+  comp: gzip

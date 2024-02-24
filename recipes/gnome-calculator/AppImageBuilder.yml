@@ -27,9 +27,6 @@ AppDir:
       - ubuntu-mono
       - fonts-*-core
 
-  runtime:
-    version: "continuous"
-
   files:
     exclude:
       - usr/lib/x86_64-linux-gnu/gconv
@@ -61,3 +58,4 @@ AppImage:
   update-information: None
   sign-key: None
   arch: x86_64
+  comp: gzip

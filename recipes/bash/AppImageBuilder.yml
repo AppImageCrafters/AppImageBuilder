@@ -44,7 +44,7 @@ AppDir:
 
   runtime:
     arch: [ x86_64, i386 ]
-    version: continuous
+    
 
   test:
     debian:
@@ -67,3 +67,4 @@ AppDir:
 
 AppImage:
   arch: x86_64
+  comp: gzip
