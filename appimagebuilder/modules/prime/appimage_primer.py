@@ -90,7 +90,7 @@ class AppImagePrimer(BasePrimer):
         if self.config.comp() != "None":
             command += [ "-comp", self.config.comp()]
         else:
-            command += ["-no-compression"]
+            command += ["-noDataCompression"]
 
         self.logger.info("Creating squashfs from AppDir")
         self.logger.debug(" ".join(command))
