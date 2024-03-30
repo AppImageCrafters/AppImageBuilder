@@ -87,8 +87,9 @@ class AppImagePrimer(BasePrimer):
         # I think this is better than hardcoding the supported compressions
         # If the team behind AppImageKit adds a new compression
         # we wouldn't need to update the code and release a new version just for a new compression method
-        if self.config.comp() != "None":
-            command += [ "-comp", self.config.comp()]
+        comp = self.config.comp() or "xz"
+        if comp != "None":
+            command += [ "-comp", comp]
         else:
             command += ["-no-compression"]
 

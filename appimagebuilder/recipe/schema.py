@@ -93,7 +93,7 @@ class RecipeSchema:
         self.v1_appimage = Schema(
             {
                 "arch": str,
-                "comp": str,
+                Optional("comp"): str,
                 Optional("update-information"): str,
                 Optional("sign-key"): str,
                 Optional("file_name"): str,

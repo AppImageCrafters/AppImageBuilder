@@ -178,7 +178,7 @@ class Orchestrator:
             app_info=app_info,
             update_string=recipe.AppImage["update-information"]() or "guess",
             runtime_arch=recipe.AppImage.arch(),
-            compression=recipe.AppImage.comp(),
+            compression=recipe.AppImage.comp() or "xz",
             sign_key=recipe.AppImage["sign-key"]() or None,
             file_name=recipe.AppImage["file_name"] or None,
         )
