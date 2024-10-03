@@ -71,7 +71,7 @@ class AppRun2LibC(BaseHelper):
         version_in_embed_strings = self.read_libc_version_from_embed_strings(libc_path)
         if version_in_embed_strings:
             logging.info(
-                "Taking libc version from embed strings: %s" % version_in_filename
+                "Taking libc version from embed strings: %s" % version_in_embed_strings
             )
             return version_in_embed_strings
 
