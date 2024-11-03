@@ -11,6 +11,8 @@
 #  all copies or substantial portions of the Software.
 import logging
 import subprocess
+import re
+import os
 
 from appimagebuilder.utils import shell
 
@@ -38,11 +40,19 @@ class FilePackageResolver:
         stdout_data = _proc.stdout.decode()
         return stdout_data
 
+    def _extract_package_names(self, pkg_names):
+        match = re.match(r"diversion by (.+?) (to|from)", pkg_names)
+        if match:
+            extracted_names = match.group(1).strip()
+            return extracted_names
+        else:
+            return pkg_names.strip()
+
     def _parse_dpkg_query_s_output(self, stdout_data):
         results = {}
         for line in stdout_data.splitlines():
             line_parts = line.split(sep=": ", maxsplit=1)
-            pkg_names = line_parts[0]
+            pkg_names = self._extract_package_names(line_parts[0])
             file_path = line_parts[1]
             for pkg_name in pkg_names.split(","):
                 pkg_name = pkg_name.strip()
