@@ -88,7 +88,7 @@ class AppImageCreator:
         return str(runtime_path)
 
     def _get_runtime_url(self):
-        runtime_url_template = "https://github.com/AppImage/AppImageKit/releases/download/continuous/runtime-%s"
+        runtime_url_template = "https://github.com/AppImage/type2-runtime/releases/tag/continuous/runtime-%s"
         runtime_url = runtime_url_template % self.target_arch
         return runtime_url
 
